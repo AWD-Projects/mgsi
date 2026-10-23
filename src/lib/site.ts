@@ -3,7 +3,7 @@
  * Teléfonos, dirección y horario salen de aquí para el sitio, el SEO y el correo.
  */
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mgsi.netlify.app').replace(/\/$/, '');
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://mgsi.mx').replace(/\/$/, '');
 
 export const site = {
   name: 'MG Servicio Inmobiliario',
