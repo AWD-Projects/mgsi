@@ -1,7 +1,7 @@
 # DESIGN.md — MGSI
 
 ## 1. Visual Theme & Atmosphere
-Firme, transparente, cercana. Secciones que alternan negro/vino, blanco y gris claro. Una sola pieza firma: el motivo de "niveles" (losas apiladas inclinadas) derivado del logo, usado en hero, 404 y como numeral de apoyo en Nosotros. Diales: variación 6, movimiento 4, densidad 5.
+Minimalista: mucho aire, tipografía grande, líneas finas y casi nada de decoración. Firme, transparente, cercana. Hero oscuro con el degradado de marca (negro → vino → rojo) a pantalla completa; el resto alterna blanco, gris claro y negro. Único motivo gráfico: las losas inclinadas del logo ("niveles"), estáticas y con entrada suave. Diales: variación 4, movimiento 2, densidad 4.
 
 ## 2. Color Palette & Roles
 - Rojo de marca `#B40039`: acciones principales, enlaces, acentos.
@@ -23,14 +23,14 @@ Firme, transparente, cercana. Secciones que alternan negro/vino, blanco y gris c
 Contenedor de 1152px con márgenes de 24px (móvil 20px). Retícula de 12 columnas; secciones con la misma escala vertical. Servicios en tres columnas (Inmobiliaria / Administrativa / Legal).
 
 ## 6. Depth & Elevation
-Plano. Separación con líneas finas y cambios de fondo; sin sombras ni glassmorphism.
+Plano, con vidrio (glassmorphism) en pocas superficies donde hay algo detrás que difuminar: encabezado al hacer scroll (`glass-light`), panel de la propiedad destacada sobre su foto y etiquetas sobre fotos (`glass-light`/`glass-dark`), franja de datos del hero y tarjetas de Nosotros (`glass-frost`) y barra móvil de contacto. Siempre con borde fino, desenfoque 16–18 px y fondo casi opaco si el navegador no soporta `backdrop-filter`. No usar vidrio sobre fondo blanco liso ni en formularios. Sin sombras decorativas.
 
 ## 7. Do's and Don'ts
 - Sí: datos reales, botones con acción concreta, un solo h1 por página.
 - No: testimonios o cifras inventadas, adjetivos de marketing repetidos, tarjetas idénticas con iconos en círculo, animación decorativa.
 
 ## 8. Responsive Behavior
-Móvil primero. Menú a pantalla completa en móvil; barra fija inferior (Llamar / WhatsApp) en la ficha de propiedad. Filtros de propiedades a ancho completo. `prefers-reduced-motion` respetado (se anima al estado final sin duración).
+Sin JavaScript de animación: entradas por scroll con CSS (`animation-timeline: view()`, el contenido siempre es visible si no hay soporte). Móvil primero. Menú a pantalla completa en móvil; barra fija inferior (Llamar / WhatsApp) en la ficha de propiedad. Filtros de propiedades a ancho completo. `prefers-reduced-motion` respetado (se anima al estado final sin duración).
 
 ## 9. Agent Prompt Guide
 Antes de tocar UI: leer este archivo y PRODUCT.md. Usar los tokens de `globals.css` (`@theme`). Los datos de contacto salen de `src/lib/site.ts`. No instalar paquetes ni cambiar colores/logos sin avisar.

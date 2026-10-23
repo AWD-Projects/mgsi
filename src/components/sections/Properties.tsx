@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import Reveal from '@/components/ui/Reveal';
-import DrawLine from '@/components/ui/DrawLine';
 import PropertyCard from './PropertyCard';
 import { mainPhone, whatsappUrl } from '@/lib/site';
 import type { PublicProperty } from '@/lib/properties';
@@ -51,7 +50,7 @@ export default function Properties({ properties, total }: { properties: PublicPr
           </Reveal>
         ) : (
           <>
-            <DrawLine className="mt-14" />
+            <div className="mt-14 border-t-2 border-ink" />
             <ul className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
               {properties.map((property, index) => (
                 <Reveal as="li" key={property.id} delay={index * 0.1}>

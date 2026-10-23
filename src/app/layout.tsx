@@ -4,8 +4,6 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyContact from '@/components/StickyContact';
-import Providers from '@/components/Providers';
-import ScrollProgress from '@/components/ui/ScrollProgress';
 import { site, siteUrl } from '@/lib/site';
 import { jsonLd, baseGraph } from '@/lib/seo';
 
@@ -74,13 +72,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Saltar al contenido
         </a>
-        <Providers>
-          <ScrollProgress />
-          <Header />
-          <main id="contenido">{children}</main>
-          <Footer />
-          <StickyContact />
-        </Providers>
+        <Header />
+        <main id="contenido">{children}</main>
+        <Footer />
+        <StickyContact />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(baseGraph()) }} />
       </body>
     </html>

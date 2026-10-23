@@ -19,22 +19,12 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>('');
-  const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   // Solo la portada abre con un hero oscuro; en el resto de las páginas el encabezado va siempre sólido.
   const overHero = pathname === '/';
 
   useEffect(() => {
-    let last = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 24);
-      // Se esconde al bajar rápido y reaparece al subir, para dar más pantalla al contenido.
-      if (Math.abs(y - last) > 8) {
-        setHidden(y > 480 && y > last);
-        last = y;
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -72,9 +62,14 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,transform] duration-300',
-        hidden && !open && '-translate-y-full focus-within:translate-y-0',
-        solid ? 'bg-white shadow-[0_1px_0_0_var(--color-line)]' : 'bg-transparent',
+        'fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-300',
+        open
+          ? 'bg-white shadow-[0_1px_0_0_var(--color-line)]'
+          : scrolled
+            ? 'glass-light shadow-[0_1px_0_0_var(--color-line)]'
+            : overHero
+              ? 'bg-transparent'
+              : 'bg-white shadow-[0_1px_0_0_var(--color-line)]',
       )}
     >
       <div className="container-page flex h-16 items-center justify-between md:h-20">

@@ -37,13 +37,12 @@ export default function PropertyCard({
               </span>
             </div>
           )}
-          <span className="absolute left-0 top-4 bg-white px-3.5 py-1.5 text-sm font-semibold text-ink transition-transform duration-300 group-hover:translate-x-1">
+          <span className="glass-light absolute left-3 top-3 px-3 py-1.5 text-sm font-semibold text-ink">
             {typeLabel[property.type]}
           </span>
         </div>
 
-        <div className="relative mt-4 flex flex-1 flex-col border-t-2 border-ink pt-5">
-          <span aria-hidden="true" className="absolute -top-0.5 left-0 h-0.5 w-full origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100" />
+        <div className="mt-4 flex flex-1 flex-col border-t border-ink pt-5">
           <Heading className="text-[1.65rem] leading-[1.1] sm:min-h-[2.2em]">{property.title}</Heading>
           <dl className="mt-5 divide-y divide-line border-y border-line text-[0.95rem]">
             {property.surface && (

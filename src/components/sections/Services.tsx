@@ -1,5 +1,4 @@
 import Reveal from '@/components/ui/Reveal';
-import DrawLine from '@/components/ui/DrawLine';
 
 const areas = [
   {
@@ -66,8 +65,7 @@ export default function Services() {
         <div className="mt-16 grid gap-x-10 gap-y-14 lg:grid-cols-3">
           {areas.map((area, index) => (
             <Reveal key={area.name} delay={index * 0.12}>
-              <DrawLine delay={index * 0.12} />
-              <div className="pt-6">
+              <div className="border-t-2 border-ink pt-6">
               <h3 className="text-4xl">{area.name}</h3>
               <p className="mt-3 text-graphite">{area.summary}</p>
               <ul className="mt-8 divide-y divide-[#d9d9d9] border-t border-[#d9d9d9]">

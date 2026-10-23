@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import Reveal from '@/components/ui/Reveal';
-import DrawLine from '@/components/ui/DrawLine';
 import Pagination from '@/components/Pagination';
 import PropertyCard from '@/components/sections/PropertyCard';
 import { getProperties } from '@/lib/properties';
@@ -116,7 +115,7 @@ export default async function CatalogPage({ searchParams }: Props) {
           </div>
         </Reveal>
 
-        <DrawLine className="mt-12" />
+        <div className="mt-12 border-t-2 border-ink" />
 
         {visible.length === 0 ? (
           <Reveal className="mt-12 grid gap-8 lg:grid-cols-12">

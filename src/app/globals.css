@@ -238,28 +238,6 @@
     transform: none;
   }
 }
-@keyframes draw-y {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-@keyframes draw-x {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-.word {
-  display: inline-block;
-  opacity: 0;
-  animation: rise 0.6s var(--ease-out-quart) forwards;
-  animation-delay: calc(var(--i, 0) * 45ms);
-}
 .rise {
   opacity: 0;
   animation: rise 0.9s var(--ease-out-quart) forwards;
@@ -267,16 +245,6 @@
 }
 .slide-up {
   animation: slide-up 1s var(--ease-out-quart) both;
-  animation-delay: var(--d, 0ms);
-}
-.draw-y {
-  transform-origin: top;
-  animation: draw-y 1.6s var(--ease-out-quart) both;
-  animation-delay: var(--d, 0ms);
-}
-.draw-x {
-  transform-origin: left;
-  animation: draw-x 1.6s var(--ease-out-quart) both;
   animation-delay: var(--d, 0ms);
 }
 
@@ -289,14 +257,6 @@
   to {
     opacity: 1;
     transform: none;
-  }
-}
-@keyframes line-in {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
   }
 }
 @keyframes nivel-in {
@@ -315,12 +275,6 @@
     animation-timeline: view();
     animation-range: entry calc(0% + var(--rd, 0%)) entry calc(40% + var(--rd, 0%));
   }
-  .draw-line {
-    transform-origin: left;
-    animation: line-in linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 60%;
-  }
   .nivel {
     animation: nivel-in linear both;
     animation-timeline: view();
@@ -328,10 +282,48 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .reveal,
-    .draw-line,
     .nivel {
       animation: none;
     }
+  }
+}
+
+/* Vidrio (glassmorphism) en pocas superficies. Sin soporte de backdrop-filter se usa un fondo casi opaco. */
+.glass-light,
+.glass-dark,
+.glass-frost {
+  border: 1px solid transparent;
+}
+.glass-frost {
+  background: rgb(60 0 19 / 0.7);
+  color: #fff;
+  border-color: rgb(255 255 255 / 0.2);
+}
+.glass-light {
+  background: rgb(255 255 255 / 0.94);
+  color: var(--color-ink);
+  border-color: rgb(255 255 255 / 0.6);
+}
+.glass-dark {
+  background: rgb(10 0 4 / 0.92);
+  color: #fff;
+  border-color: rgb(255 255 255 / 0.16);
+}
+@supports (backdrop-filter: blur(1px)) {
+  .glass-light {
+    background: rgb(255 255 255 / 0.72);
+    backdrop-filter: blur(18px) saturate(1.6);
+    -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  }
+  .glass-frost {
+    background: rgb(255 255 255 / 0.07);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  }
+  .glass-dark {
+    background: rgb(20 0 8 / 0.42);
+    backdrop-filter: blur(16px) saturate(1.4);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
   }
 }
 

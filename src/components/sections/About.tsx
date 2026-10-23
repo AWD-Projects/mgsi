@@ -1,7 +1,5 @@
 import Reveal from '@/components/ui/Reveal';
 import Niveles from '@/components/ui/Niveles';
-import CountUp from '@/components/ui/CountUp';
-import ScrollWords from '@/components/ui/ScrollWords';
 
 const principles = [
   { title: 'Un solo equipo', text: 'Lo inmobiliario, lo administrativo y lo legal se trabajan juntos en tu operación.' },
@@ -11,15 +9,15 @@ const principles = [
 
 export default function About() {
   return (
-    <section id="nosotros" className="on-dark bg-ink text-white section-y">
+    <section id="nosotros" className="on-dark relative isolate overflow-hidden bg-ink text-white section-y">
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(48rem_32rem_at_92%_18%,rgb(180_0_57/0.5),transparent_65%),radial-gradient(40rem_28rem_at_0%_100%,rgb(60_0_19/0.8),transparent_70%)]" />
       <div className="container-page">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-7">
             <h2 className="h-section">Nosotros</h2>
-            <ScrollWords
-              className="mt-8 font-display text-2xl leading-[1.35] sm:text-3xl"
-              text="Somos un grupo de profesionistas con más de 40 años de experiencia en el área inmobiliaria, administrativa y legal, con el propósito de ayudar a nuestros clientes en operaciones de compra, venta, renta y administración inmobiliaria."
-            />
+            <p className="mt-8 font-display text-2xl leading-[1.35] sm:text-3xl">
+              Somos un grupo de profesionistas con más de 40 años de experiencia en el área inmobiliaria, administrativa y legal, con el propósito de ayudar a nuestros clientes en operaciones de compra, venta, renta y administración inmobiliaria.
+            </p>
             <div className="mt-14 border-t border-white/25 pt-8">
               <h3 className="text-2xl sm:text-3xl">Nuestra misión</h3>
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/85">
@@ -33,14 +31,14 @@ export default function About() {
           <Reveal delay={0.1} className="lg:col-span-5 lg:pt-4">
             <div className="flex items-end justify-between gap-6" aria-hidden="true">
               <p className="font-display text-[clamp(6rem,14vw,10rem)] leading-none text-brand">
-                <CountUp to={40} suffix="+" />
+                40+
               </p>
               <Niveles className="mb-2 h-24 w-auto shrink-0 sm:h-32" />
             </div>
-            <ul className="mt-6 divide-y divide-white/20 border-y border-white/20">
+            <ul className="mt-8 grid gap-3">
               {principles.map((item, i) => (
-                <Reveal as="li" key={item.title} delay={0.15 + i * 0.1} className="group py-5 transition-colors hover:bg-white/[0.04]">
-                  <h3 className="font-sans text-base font-semibold tracking-normal transition-transform duration-300 group-hover:translate-x-1.5">{item.title}</h3>
+                <Reveal as="li" key={item.title} delay={0.15 + i * 0.1} className="glass-frost p-5">
+                  <h3 className="font-sans text-base font-semibold tracking-normal">{item.title}</h3>
                   <p className="mt-1 text-[0.95rem] text-white/80">{item.text}</p>
                 </Reveal>
               ))}

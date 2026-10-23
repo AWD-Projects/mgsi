@@ -64,7 +64,7 @@ export default function Gallery({ images, title }: { images: string[]; title: st
             >
               <ChevronRight className="size-5" aria-hidden="true" />
             </button>
-            <p className="absolute bottom-0 left-0 bg-ink px-3 py-1.5 text-sm font-medium text-white" aria-live="polite">
+            <p className="glass-dark absolute bottom-3 left-3 px-3 py-1.5 text-sm font-medium text-white" aria-live="polite">
               {index + 1} / {images.length}
             </p>
           </>

@@ -2,12 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import Niveles from '@/components/ui/Niveles';
-import HeroBackdrop from '@/components/ui/HeroBackdrop';
 import { formatPrice } from '@/lib/format';
 import { mainPhone, site, whatsappUrl } from '@/lib/site';
 import type { PublicProperty } from '@/lib/properties';
-
-const headline = 'Inmobiliaria con 40 años de respaldo legal y administrativo.'.split(' ');
 
 export default function Hero({ featured }: { featured?: PublicProperty }) {
   const wa = whatsappUrl('Hola, me gustaría recibir información sobre sus servicios inmobiliarios.');
@@ -16,32 +13,18 @@ export default function Hero({ featured }: { featured?: PublicProperty }) {
 
   return (
     <section id="inicio" className="on-dark relative isolate flex min-h-svh flex-col overflow-hidden bg-ink text-white max-md:pb-14">
-      {/* Fondo de marca: se mantiene el degradado negro, vino y #B40039 y las líneas de plano */}
-      <div aria-hidden="true" className="absolute inset-0 -z-20 bg-gradient-to-br from-black via-wine to-brand opacity-90" />
-      <div aria-hidden="true" className="absolute inset-0 -z-10 opacity-[0.12]">
-        <span className="draw-y absolute inset-y-0 left-1/4 w-px bg-white" style={{ '--d': '0.2s' } as React.CSSProperties} />
-        <span className="draw-y absolute inset-y-0 left-2/4 w-px bg-white" style={{ '--d': '0.4s' } as React.CSSProperties} />
-        <span className="draw-y absolute inset-y-0 left-3/4 w-px bg-white" style={{ '--d': '0.6s' } as React.CSSProperties} />
-        <span className="draw-x absolute inset-x-0 top-1/3 h-px bg-white" style={{ '--d': '0.5s' } as React.CSSProperties} />
-        <span className="draw-x absolute inset-x-0 top-2/3 h-px bg-white" style={{ '--d': '0.8s' } as React.CSSProperties} />
-      </div>
-      <HeroBackdrop />
+      {/* Fondo de marca: degradado negro, vino y #B40039. Las superficies de vidrio se ven sobre él. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-wine to-brand opacity-90" />
 
-      <div className="container-page grid flex-1 content-center gap-10 pb-10 pt-28 sm:pt-32 lg:grid-cols-12 lg:items-center lg:gap-10 lg:pb-12 lg:pt-28">
-        <div className="lg:col-span-7">
-          <h1 className="text-[clamp(2.5rem,5.6vw,4.9rem)] font-medium leading-[1.03]">
-            {headline.map((word, i) => (
-              <span key={i}>
-                <span className="word" style={{ '--i': i } as React.CSSProperties}>
-                  {word}
-                </span>{' '}
-              </span>
-            ))}
+      <div className="container-page grid flex-1 content-center gap-10 pb-10 pt-28 sm:pt-32 lg:grid-cols-12 lg:items-center lg:gap-14 lg:pb-12 lg:pt-28">
+        <div className="rise lg:col-span-7">
+          <h1 className="text-[clamp(2.5rem,5.4vw,4.7rem)] font-medium leading-[1.04]">
+            Inmobiliaria con 40 años de respaldo legal y administrativo.
           </h1>
-          <p className="rise mt-7 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl" style={{ '--d': '0.45s' } as React.CSSProperties}>
+          <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl">
             Compra, vende o renta con la parte legal y la administración resueltas en una sola oficina de la Col. Del Valle.
           </p>
-          <div className="rise mt-10 flex flex-col gap-3 sm:flex-row" style={{ '--d': '0.6s' } as React.CSSProperties}>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <Link href="/propiedades" className="btn btn-brand">
               Ver propiedades disponibles
               <ArrowRight className="arrow size-4" aria-hidden="true" />
@@ -56,13 +39,10 @@ export default function Hero({ featured }: { featured?: PublicProperty }) {
           </div>
         </div>
 
-        <div className="slide-up relative hidden md:block lg:col-span-5" style={{ '--d': '0.2s' } as React.CSSProperties}>
+        <div className="relative hidden md:block lg:col-span-5">
           {featured && featured.images[0] ? (
-            <Link
-              href={`/propiedades/${featured.slug}`}
-              className="group relative block bg-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]"
-            >
-              <div className="relative h-[min(44svh,26rem)] overflow-hidden lg:h-[min(62svh,36rem)]">
+            <Link href={`/propiedades/${featured.slug}`} className="group relative block overflow-hidden bg-ink">
+              <div className="relative h-[min(44svh,26rem)] lg:h-[min(60svh,34rem)]">
                 <Image
                   src={featured.images[0]}
                   alt={featured.title}
@@ -71,12 +51,12 @@ export default function Hero({ featured }: { featured?: PublicProperty }) {
                   sizes="(min-width: 1024px) 38vw, 100vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
-                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
               </div>
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                <p className="text-sm font-medium text-white/85">Publicada recientemente</p>
-                <p className="mt-1 font-display text-2xl leading-tight sm:text-3xl">{featured.title}</p>
-                <div className="mt-4 flex items-end justify-between gap-4 border-t border-white/30 pt-4">
+              {/* Vidrio oscuro sobre la foto: el texto siempre tiene contraste */}
+              <div className="glass-dark absolute inset-x-4 bottom-4 p-5">
+                <p className="text-sm text-white/85">Publicada recientemente</p>
+                <p className="mt-1 font-display text-2xl leading-tight">{featured.title}</p>
+                <div className="mt-4 flex items-end justify-between gap-4 border-t border-white/25 pt-4">
                   <p>
                     <span className="block text-sm text-white/85">{priceNote}</span>
                     <span className="font-display text-2xl">{formatPrice(price)}</span>
@@ -94,8 +74,9 @@ export default function Hero({ featured }: { featured?: PublicProperty }) {
         </div>
       </div>
 
-      <div className="border-t border-white/20">
-        <dl className="container-page grid gap-4 py-5 text-sm sm:grid-cols-3 sm:gap-8 sm:py-7">
+      {/* Datos de contacto en una franja de vidrio */}
+      <div className="glass-frost border-x-0 border-b-0">
+        <dl className="container-page grid gap-4 py-5 text-sm sm:grid-cols-3 sm:gap-8 sm:py-6">
           <div>
             <dt className="text-white/75">Oficina</dt>
             <dd className="mt-1 font-display text-2xl">{site.address.lines[0]}, Col. Del Valle</dd>
