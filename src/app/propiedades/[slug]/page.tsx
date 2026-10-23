@@ -124,10 +124,12 @@ export default async function PropertyPage({ params }: Props) {
         </div>
 
         <div className="container-page mt-16 grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            <h2 className="text-3xl sm:text-4xl">Descripción</h2>
-            <p className="mt-5 whitespace-pre-line text-lg leading-relaxed text-graphite">{property.description}</p>
-          </div>
+          {property.description && (
+            <div className="lg:col-span-7">
+              <h2 className="text-3xl sm:text-4xl">Descripción</h2>
+              <p className="mt-5 whitespace-pre-line text-lg leading-relaxed text-graphite">{property.description}</p>
+            </div>
+          )}
           {property.amenities.length > 0 && (
             <div className="lg:col-span-5">
               <h2 className="text-3xl sm:text-4xl">Características</h2>
@@ -148,7 +150,7 @@ export default async function PropertyPage({ params }: Props) {
         <section aria-labelledby="otras" className="bg-mist py-20 md:py-28">
           <div className="container-page">
             <h2 id="otras" className="text-3xl sm:text-4xl">
-              Otras propiedades
+              Otras propiedades disponibles
             </h2>
             <ul className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
               {others.map((p) => (

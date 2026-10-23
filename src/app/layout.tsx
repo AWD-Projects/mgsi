@@ -23,9 +23,9 @@ const grotesk = localFont({
   display: 'swap',
 });
 
-const title = 'MG Servicio Inmobiliario | Compra, venta y renta en México';
+const title = 'MG Servicio Inmobiliario | Compra, venta y renta en CDMX';
 const description =
-  'Más de 40 años en asesoría inmobiliaria, administrativa y legal. Compra, venta, renta y administración de propiedades en la Ciudad de México.';
+  'Inmobiliaria en la Col. Del Valle, CDMX. Compra, vende o renta con respaldo legal y administración de tu propiedad en una sola oficina. Llámanos o escríbenos.';
 const noindex = process.env.NEXT_PUBLIC_NOINDEX === 'true';
 
 export const metadata: Metadata = {

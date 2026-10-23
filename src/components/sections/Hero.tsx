@@ -39,11 +39,11 @@ export default function Hero({ featured }: { featured?: PublicProperty }) {
             ))}
           </h1>
           <p className="rise mt-7 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl" style={{ '--d': '0.45s' } as React.CSSProperties}>
-            Te acompañamos en la compra, venta, renta y administración de tu propiedad, de la primera visita a la firma.
+            Compra, vende o renta con la parte legal y la administración resueltas en una sola oficina de la Col. Del Valle.
           </p>
           <div className="rise mt-10 flex flex-col gap-3 sm:flex-row" style={{ '--d': '0.6s' } as React.CSSProperties}>
             <Link href="/propiedades" className="btn btn-brand">
-              Ver propiedades
+              Ver propiedades disponibles
               <ArrowRight className="arrow size-4" aria-hidden="true" />
             </Link>
             <a
@@ -51,7 +51,7 @@ export default function Hero({ featured }: { featured?: PublicProperty }) {
               {...(wa ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               className="btn btn-line"
             >
-              {wa ? 'Escribir por WhatsApp' : `Llamar al ${mainPhone.display}`}
+              {wa ? 'Cuéntanos qué buscas' : `Llamar al ${mainPhone.display}`}
             </a>
           </div>
         </div>
@@ -89,24 +89,28 @@ export default function Hero({ featured }: { featured?: PublicProperty }) {
               </div>
             </Link>
           ) : (
-            <Niveles className="mx-auto hidden h-auto w-full max-w-sm lg:block" />
+            <Niveles className="mx-auto hidden h-[min(50svh,28rem)] w-auto lg:block" />
           )}
         </div>
       </div>
 
       <div className="border-t border-white/20">
-        <dl className="container-page grid gap-4 py-5 sm:gap-8 sm:py-7 sm:grid-cols-3 text-sm">
+        <dl className="container-page grid gap-4 py-5 text-sm sm:grid-cols-3 sm:gap-8 sm:py-7">
           <div>
-            <dt className="text-white/75">Trayectoria</dt>
-            <dd className="mt-1 font-display text-2xl">Más de 40 años</dd>
-          </div>
-          <div className="hidden sm:block">
-            <dt className="text-white/75">Áreas</dt>
-            <dd className="mt-1 font-display text-2xl">Inmobiliaria, administrativa y legal</dd>
-          </div>
-          <div className="hidden sm:block">
             <dt className="text-white/75">Oficina</dt>
             <dd className="mt-1 font-display text-2xl">{site.address.lines[0]}, Col. Del Valle</dd>
+          </div>
+          <div className="hidden sm:block">
+            <dt className="text-white/75">Atención en oficina</dt>
+            <dd className="mt-1 font-display text-2xl">{site.hours.label}</dd>
+          </div>
+          <div className="hidden sm:block">
+            <dt className="text-white/75">Teléfono</dt>
+            <dd className="mt-1 font-display text-2xl">
+              <a href={`tel:${mainPhone.tel}`} className="link-line">
+                {mainPhone.display}
+              </a>
+            </dd>
           </div>
         </dl>
       </div>

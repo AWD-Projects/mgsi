@@ -62,7 +62,7 @@ export default function Contact() {
         <Reveal className="max-w-3xl">
           <h2 className="h-section">Contacto</h2>
           <p className="mt-5 text-lg text-slate">
-            Danos la oportunidad de conocerte, estamos seguros de poder ayudarte. Escríbenos o llámanos en horario de oficina.
+            Escríbenos o llámanos en horario de oficina y te decimos cómo podemos ayudarte con tu compra, venta, renta o administración.
           </p>
         </Reveal>
 
@@ -129,7 +129,7 @@ export default function Contact() {
 
           <Reveal delay={0.12} className="order-1 lg:sticky lg:top-28 lg:order-2 lg:col-span-7 lg:self-start">
             <form ref={formRef} action={action} noValidate className="border-t-2 border-ink pt-6" aria-describedby="contact-status">
-              <h3 className="font-sans text-lg font-semibold tracking-normal">Envíanos un mensaje</h3>
+              <h3 className="font-sans text-lg font-semibold tracking-normal">Déjanos tu consulta</h3>
 
               <div
                 ref={statusRef}
@@ -161,7 +161,7 @@ export default function Contact() {
                 </div>
                 <div className="sm:col-span-2">
                   <Field id="message" label="¿En qué podemos ayudarte?" error={err.message}>
-                    <textarea id="message" name="message" rows={4} required defaultValue={v?.message} aria-invalid={!!err.message} aria-describedby={err.message ? 'message-error' : undefined} className="field resize-y" placeholder="Cuéntanos si buscas comprar, vender, rentar o administrar." />
+                    <textarea id="message" name="message" rows={4} required defaultValue={v?.message} aria-invalid={!!err.message} aria-describedby={err.message ? 'message-error' : undefined} className="field resize-y" placeholder="Por ejemplo: busco rentar un departamento en la Del Valle, hasta $20,000 al mes." />
                   </Field>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function Contact() {
                     Enviando…
                   </>
                 ) : (
-                  'Enviar mensaje'
+                  'Enviar mi consulta'
                 )}
               </button>
             </form>

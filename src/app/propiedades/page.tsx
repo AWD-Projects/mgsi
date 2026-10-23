@@ -88,7 +88,7 @@ export default async function CatalogPage({ searchParams }: Props) {
                   ? `${filtered.length} ${filtered.length === 1 ? 'propiedad publicada' : 'propiedades publicadas'}${
                       pages > 1 ? `. Página ${page} de ${pages}.` : '.'
                     }`
-                  : 'Pregunta por lo que buscas y te mostramos lo disponible.'}
+                  : 'Cuéntanos qué buscas y te decimos qué tenemos disponible.'}
               </p>
             </div>
 
@@ -122,15 +122,17 @@ export default async function CatalogPage({ searchParams }: Props) {
           <Reveal className="mt-12 grid gap-8 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <h2 className="text-3xl sm:text-4xl">
-                {all.length === 0 ? 'Estamos actualizando el catálogo.' : 'No hay propiedades en esta categoría por ahora.'}
+                {all.length === 0
+                  ? 'El catálogo en línea se está actualizando.'
+                  : `No hay propiedades ${operation === 'renta' ? 'en renta' : 'en venta'} publicadas por ahora.`}
               </h2>
               <p className="mt-4 max-w-xl text-lg text-slate">
-                Dinos qué buscas y te decimos qué tenemos disponible, incluso lo que aún no está publicado.
+                Dinos zona, presupuesto y si quieres comprar o rentar, y te decimos qué tenemos disponible, incluso lo que aún no está publicado.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:justify-end">
               <Link href="/#contacto" className="btn btn-ink">
-                Escribirnos
+                Contarnos qué busco
               </Link>
               <a
                 href={wa ?? `tel:${mainPhone.tel}`}

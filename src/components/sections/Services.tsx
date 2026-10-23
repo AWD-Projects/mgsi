@@ -8,17 +8,17 @@ const areas = [
     items: [
       {
         title: 'Compra y venta',
-        text: 'Asesoría en operaciones de propiedades residenciales y comerciales.',
-        points: ['Valuación profesional', 'Negociación', 'Documentación legal'],
+        text: 'Te acompañamos a comprar o vender una propiedad residencial o comercial.',
+        points: ['Valuación de la propiedad', 'Negociación', 'Documentación legal'],
       },
       {
         title: 'Renta',
-        text: 'Gestión de propiedades en renta con seguimiento de todo el proceso.',
+        text: 'Si tienes una propiedad para rentar, buscamos inquilino y formalizamos el contrato.',
         points: ['Búsqueda de inquilinos', 'Contratos legales', 'Administración'],
       },
       {
         title: 'Consultoría',
-        text: 'Para inversionistas y desarrolladores inmobiliarios.',
+        text: 'Para quien invierte o desarrolla y necesita datos antes de decidir.',
         points: ['Análisis de mercado', 'Estrategias de inversión', 'Estudios de factibilidad'],
       },
     ],
@@ -29,12 +29,12 @@ const areas = [
     items: [
       {
         title: 'Administración',
-        text: 'Administración de propiedades con mantenimiento y supervisión constante.',
+        text: 'Nos ocupamos de tu propiedad día a día, para que no tengas que hacerlo tú.',
         points: ['Mantenimiento', 'Cobros', 'Reportes mensuales'],
       },
       {
         title: 'Seguros',
-        text: 'Protección para tu patrimonio inmobiliario con seguros especializados.',
+        text: 'Aseguramos tu propiedad y te acompañamos si hay que reclamar.',
         points: ['Seguros de propiedad', 'Cobertura legal', 'Asesoría en reclamaciones'],
       },
     ],
@@ -45,7 +45,7 @@ const areas = [
     items: [
       {
         title: 'Asesoría legal',
-        text: 'Soporte legal especializado en transacciones inmobiliarias.',
+        text: 'Revisamos el papel de la operación antes de que firmes y te acompañamos si surge un conflicto.',
         points: ['Revisión de documentos', 'Trámites notariales', 'Resolución de conflictos'],
       },
     ],
@@ -59,8 +59,7 @@ export default function Services() {
         <Reveal className="max-w-3xl">
           <h2 className="h-section">Servicios</h2>
           <p className="mt-5 text-lg text-graphite">
-            Una sola oficina cubre las tres partes de una operación inmobiliaria. Así no pasas de un despacho a otro entre
-            la visita y la firma.
+            Una operación inmobiliaria tiene tres frentes: cerrar el trato, cuidar el papel y administrar la propiedad después. Aquí los atiende el mismo equipo.
           </p>
         </Reveal>
 
@@ -91,7 +90,7 @@ export default function Services() {
                 <div className="mt-6 border-t border-[#d9d9d9] pt-8">
                   <p className="font-display text-2xl leading-snug">¿No sabes qué necesitas? Cuéntanos tu caso y te decimos por dónde empezar.</p>
                   <a href="#contacto" className="btn btn-ink mt-6">
-                    Cuéntanos tu caso
+                    Pedir orientación
                   </a>
                 </div>
               )}

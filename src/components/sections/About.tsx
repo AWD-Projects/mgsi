@@ -4,10 +4,9 @@ import CountUp from '@/components/ui/CountUp';
 import ScrollWords from '@/components/ui/ScrollWords';
 
 const principles = [
-  { title: 'Cuatro décadas en el mercado', text: 'Más de 40 años de trabajo en operaciones inmobiliarias en México.' },
-  { title: 'Tres áreas en un mismo equipo', text: 'Profesionistas del área inmobiliaria, administrativa y legal.' },
-  { title: 'De la primera visita a la firma', text: 'Compra, venta, renta y administración de propiedades.' },
-  { title: 'Atención directa', text: 'Soluciones adaptadas a cada cliente, con trato directo en nuestra oficina.' },
+  { title: 'Un solo equipo', text: 'Lo inmobiliario, lo administrativo y lo legal se trabajan juntos en tu operación.' },
+  { title: 'Trato en persona', text: 'Te atendemos en nuestra oficina de la Col. Del Valle, de lunes a viernes.' },
+  { title: 'También después de la firma', text: 'Administración de la propiedad y seguros cuando ya cerraste la operación.' },
 ];
 
 export default function About() {

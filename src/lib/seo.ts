@@ -69,7 +69,7 @@ export function homePageGraph(properties: PublicProperty[]) {
         '@type': 'WebPage',
         '@id': `${siteUrl}/#webpage`,
         url: siteUrl,
-        name: `${site.name} | Compra, venta y renta de inmuebles`,
+        name: `${site.name} | Compra, venta y renta en CDMX`,
         isPartOf: { '@id': SITE_ID },
         about: { '@id': ORG_ID },
         inLanguage: site.locale,

@@ -55,7 +55,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
 
   // Anti-spam: campo oculto lleno = bot; se responde "éxito" sin enviar nada.
   if (String(formData.get('website') ?? '')) {
-    return { status: 'success', message: 'Gracias, recibimos tu mensaje.' };
+    return { status: 'success', message: 'Recibimos tu mensaje, gracias. En cuanto lo revisemos te contactamos por teléfono o correo.' };
   }
 
   const parsed = schema.safeParse(raw);

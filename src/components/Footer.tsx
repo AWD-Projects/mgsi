@@ -19,9 +19,7 @@ export default function Footer() {
         <div className="lg:col-span-6">
           <Logo variant="light" className="h-14" />
           <p className="mt-8 max-w-md text-[0.95rem] leading-relaxed text-white/80">
-            Somos un grupo de profesionistas con más de 40 años de experiencia en el área inmobiliaria, administrativa y
-            legal, con el propósito de ayudar a nuestros clientes en operaciones de compra, venta, renta y administración
-            inmobiliaria.
+            Asesoría inmobiliaria, administrativa y legal para quien compra, vende, renta o administra una propiedad en la Ciudad de México.
           </p>
           <div className="mt-8 flex gap-3">
             <a

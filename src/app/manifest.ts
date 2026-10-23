@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'MG Servicio Inmobiliario',
     short_name: 'MGSI',
-    description: 'Más de 40 años en asesoría inmobiliaria, administrativa y legal.',
+    description: 'Inmobiliaria en la Col. Del Valle, CDMX: compra, venta, renta y administración de propiedades.',
     lang: 'es-MX',
     start_url: '/',
     display: 'standalone',

@@ -30,5 +30,10 @@ Firme, transparente, cercana. Más de 40 años de trayectoria.
 - Hospedaje en Netlify; `dev` para pruebas con preview, `main` solo con aprobación explícita.
 - Español de México.
 
-## Voz
-Directa y concreta; frases cortas; la acción dicha con claridad ("Preguntar por esta propiedad"). Sin adjetivos de relleno.
+## Voz y reglas de copy
+Directa y concreta; frases cortas; hablar de "tú" más que de "nosotros"; la acción dicha con su resultado ("Preguntar por esta propiedad", "Pedir orientación"). Sin adjetivos de relleno.
+- Titular y subtítulo dicen qué se hace y qué gana quien lee; cada sección tiene un ángulo distinto.
+- Datos concretos (zona, horario, teléfono) en lugar de adjetivos; ninguna promesa operativa que el cliente no haya confirmado (tiempos de respuesta, garantías, cifras).
+- Misión y presentación de la empresa son texto de marca: no se reescriben sin aprobación.
+- Vigilar repetición: "40 años" solo en el titular y en la presentación; lista de vigilancia (premium, calidad, experiencia, personalizado, soluciones…) fuera del copy nuevo.
+- Fuentes de la investigación: AgentFire, HousingWire, Nodalview y guías de microcopy de UX.
