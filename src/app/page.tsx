@@ -12,12 +12,11 @@ export const revalidate = 300;
 
 export default async function Home() {
   const properties = await getProperties();
-  const featured = properties.find((p) => p.images.length > 0);
   const latest = properties.slice(0, 3);
 
   return (
     <>
-      <Hero featured={featured} />
+      <Hero />
       <Properties properties={latest} total={properties.length} />
       <Services />
       <About />

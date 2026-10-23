@@ -1,7 +1,7 @@
 # DESIGN.md — MGSI
 
 ## 1. Visual Theme & Atmosphere
-Minimalista: mucho aire, tipografía grande, líneas finas y casi nada de decoración. Firme, transparente, cercana. Hero oscuro con el degradado de marca (negro → vino → rojo) a pantalla completa; el resto alterna blanco, gris claro y negro. Único motivo gráfico: las losas inclinadas del logo ("niveles"), estáticas y con entrada suave. Diales: variación 4, movimiento 2, densidad 4.
+Minimalista: mucho aire, tipografía grande, líneas finas y casi nada de decoración. Firme, transparente, cercana. Hero oscuro con el degradado de marca (negro → vino → rojo) a pantalla completa; el resto alterna blanco, gris claro y negro. Sin motivos gráficos añadidos: solo tipografía, líneas finas y fotografía de las propiedades. Diales: variación 2, movimiento 1, densidad 2.
 
 ## 2. Color Palette & Roles
 - Rojo de marca `#B40039`: acciones principales, enlaces, acentos.
@@ -23,7 +23,7 @@ Minimalista: mucho aire, tipografía grande, líneas finas y casi nada de decora
 Contenedor de 1152px con márgenes de 24px (móvil 20px). Retícula de 12 columnas; secciones con la misma escala vertical. Servicios en tres columnas (Inmobiliaria / Administrativa / Legal).
 
 ## 6. Depth & Elevation
-Plano, con vidrio (glassmorphism) en pocas superficies donde hay algo detrás que difuminar: encabezado al hacer scroll (`glass-light`), panel de la propiedad destacada sobre su foto y etiquetas sobre fotos (`glass-light`/`glass-dark`), franja de datos del hero y tarjetas de Nosotros (`glass-frost`) y barra móvil de contacto. Siempre con borde fino, desenfoque 16–18 px y fondo casi opaco si el navegador no soporta `backdrop-filter`. No usar vidrio sobre fondo blanco liso ni en formularios. Sin sombras decorativas.
+Plano, con vidrio (glassmorphism) en pocas superficies donde hay algo detrás que difuminar: encabezado al hacer scroll (`glass-light`), etiquetas y contador sobre fotos (`glass-light`/`glass-dark`), franja de datos del hero (`glass-frost`) y barra móvil de contacto. Siempre con borde fino, desenfoque 16–18 px y fondo casi opaco si el navegador no soporta `backdrop-filter`. No usar vidrio sobre fondo blanco liso ni en formularios. Sin sombras decorativas.
 
 ## 7. Do's and Don'ts
 - Sí: datos reales, botones con acción concreta, un solo h1 por página.

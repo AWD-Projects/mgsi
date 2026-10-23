@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ImageOff } from 'lucide-react';
+import { ImageOff } from 'lucide-react';
 import { formatPrice } from '@/lib/format';
 import type { PublicProperty } from '@/lib/properties';
 
@@ -42,32 +42,19 @@ export default function PropertyCard({
           </span>
         </div>
 
-        <div className="mt-4 flex flex-1 flex-col border-t border-ink pt-5">
-          <Heading className="text-[1.65rem] leading-[1.1] sm:min-h-[2.2em]">{property.title}</Heading>
-          <dl className="mt-5 divide-y divide-line border-y border-line text-[0.95rem]">
-            {property.surface && (
-              <div className="flex items-baseline justify-between gap-4 py-2.5">
-                <dt className="text-slate">Superficie</dt>
-                <dd className="font-medium text-ink">{property.surface}</dd>
-              </div>
-            )}
-            {property.rentPrice > 0 && (
-              <div className="flex items-baseline justify-between gap-4 py-2.5">
-                <dt className="text-slate">Renta al mes</dt>
-                <dd className="font-display text-xl text-ink">{formatPrice(property.rentPrice)}</dd>
-              </div>
-            )}
-            {property.salePrice > 0 && (
-              <div className="flex items-baseline justify-between gap-4 py-2.5">
-                <dt className="text-slate">Venta</dt>
-                <dd className="font-display text-xl text-ink">{formatPrice(property.salePrice)}</dd>
-              </div>
-            )}
-          </dl>
-          <span className="mt-auto inline-flex items-center gap-2 pt-5 text-[0.95rem] font-semibold text-brand">
-            Ver ficha completa
-            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
-          </span>
+        <div className="mt-4">
+          <Heading className="text-2xl leading-[1.15] underline decoration-transparent decoration-1 underline-offset-4 transition-colors group-hover:decoration-ink">
+            {property.title}
+          </Heading>
+          <p className="mt-2 text-[0.95rem] text-slate">{property.surface}</p>
+          <p className="mt-3 font-display text-xl">
+            {[
+              property.rentPrice > 0 && `${formatPrice(property.rentPrice)} al mes`,
+              property.salePrice > 0 && `Venta ${formatPrice(property.salePrice)}`,
+            ]
+              .filter(Boolean)
+              .join(' · ')}
+          </p>
         </div>
       </Link>
     </article>

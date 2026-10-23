@@ -92,7 +92,7 @@ export default async function CatalogPage({ searchParams }: Props) {
             </div>
 
             {all.length > 0 && (
-              <nav aria-label="Filtrar por operación" className="flex w-full shrink-0 border border-ink lg:w-auto">
+              <nav aria-label="Filtrar por operación" className="flex w-full shrink-0 gap-7 lg:w-auto">
                 {tabs.map((tab) => (
                   <Link
                     key={tab.id}
@@ -100,12 +100,12 @@ export default async function CatalogPage({ searchParams }: Props) {
                     aria-current={operation === tab.id ? 'true' : undefined}
                     scroll={false}
                     className={cn(
-                      'inline-flex min-h-11 flex-1 items-center justify-center whitespace-nowrap px-3 text-[0.95rem] font-semibold transition-colors sm:px-5 lg:flex-none',
-                      operation === tab.id ? 'bg-ink text-white' : 'bg-white text-ink hover:bg-mist',
+                      'inline-flex min-h-11 items-center whitespace-nowrap border-b-2 text-[0.95rem] transition-colors',
+                      operation === tab.id ? 'border-ink font-semibold text-ink' : 'border-transparent text-slate hover:text-ink',
                     )}
                   >
                     {tab.label}
-                    <span className={cn('ml-2 font-normal', operation === tab.id ? 'text-white/80' : 'text-slate')}>
+                    <span className="ml-2 font-normal text-slate">
                       {counts[tab.id]}
                     </span>
                   </Link>
@@ -115,7 +115,7 @@ export default async function CatalogPage({ searchParams }: Props) {
           </div>
         </Reveal>
 
-        <div className="mt-12 border-t-2 border-ink" />
+        <div className="mt-12 border-t border-line" />
 
         {visible.length === 0 ? (
           <Reveal className="mt-12 grid gap-8 lg:grid-cols-12">

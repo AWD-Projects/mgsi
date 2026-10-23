@@ -28,7 +28,7 @@ export default function Properties({ properties, total }: { properties: PublicPr
         </Reveal>
 
         {properties.length === 0 ? (
-          <Reveal className="mt-14 grid gap-8 border-t-2 border-ink pt-10 lg:grid-cols-12">
+          <Reveal className="mt-14 grid gap-8 border-t border-line pt-10 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <h3 className="text-3xl sm:text-4xl">El catálogo en línea se está actualizando.</h3>
               <p className="mt-4 max-w-xl text-lg text-slate">
@@ -50,7 +50,7 @@ export default function Properties({ properties, total }: { properties: PublicPr
           </Reveal>
         ) : (
           <>
-            <div className="mt-14 border-t-2 border-ink" />
+            <div className="mt-14 border-t border-line" />
             <ul className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
               {properties.map((property, index) => (
                 <Reveal as="li" key={property.id} delay={index * 0.1}>

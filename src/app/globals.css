@@ -108,7 +108,7 @@
   }
 
   .h-section {
-    font-size: clamp(2.25rem, 4.4vw, 3.75rem);
+    font-size: clamp(2rem, 3.6vw, 3rem);
   }
 
   .btn {
@@ -259,30 +259,14 @@
     transform: none;
   }
 }
-@keyframes nivel-in {
-  from {
-    opacity: 0;
-    transform: translateX(-26px);
-  }
-  to {
-    opacity: var(--o, 0.2);
-    transform: none;
-  }
-}
 @supports (animation-timeline: view()) {
   .reveal {
     animation: reveal-in linear both;
     animation-timeline: view();
     animation-range: entry calc(0% + var(--rd, 0%)) entry calc(40% + var(--rd, 0%));
   }
-  .nivel {
-    animation: nivel-in linear both;
-    animation-timeline: view();
-    animation-range: entry calc(0% + var(--rd, 0%)) entry calc(45% + var(--rd, 0%));
-  }
   @media (prefers-reduced-motion: reduce) {
-    .reveal,
-    .nivel {
+    .reveal {
       animation: none;
     }
   }
@@ -311,7 +295,7 @@
 }
 @supports (backdrop-filter: blur(1px)) {
   .glass-light {
-    background: rgb(255 255 255 / 0.72);
+    background: rgb(255 255 255 / 0.88);
     backdrop-filter: blur(18px) saturate(1.6);
     -webkit-backdrop-filter: blur(18px) saturate(1.6);
   }

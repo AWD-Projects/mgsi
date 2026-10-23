@@ -62,37 +62,28 @@ export default function Services() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-x-10 gap-y-14 lg:grid-cols-3">
+        <div className="mt-14 grid gap-x-12 gap-y-16 lg:grid-cols-3">
           {areas.map((area, index) => (
-            <Reveal key={area.name} delay={index * 0.12}>
-              <div className="border-t-2 border-ink pt-6">
-              <h3 className="text-4xl">{area.name}</h3>
+            <Reveal key={area.name} delay={index * 0.1}>
+              <h3 className="text-3xl">{area.name}</h3>
               <p className="mt-3 text-graphite">{area.summary}</p>
-              <ul className="mt-8 divide-y divide-[#d9d9d9] border-t border-[#d9d9d9]">
+              <ul className="mt-8 space-y-7 border-t border-ink pt-8">
                 {area.items.map((item) => (
-                  <li key={item.title} className="group py-6">
-                    <h4 className="font-sans text-lg font-semibold leading-snug tracking-normal">{item.title}</h4>
-                    <p className="mt-2 text-[0.95rem] text-graphite">{item.text}</p>
-                    <ul className="mt-4 space-y-1.5 text-[0.95rem] text-graphite">
-                      {item.points.map((point) => (
-                        <li key={point} className="flex gap-3">
-                          <span aria-hidden="true" className="mt-[0.7em] h-px w-4 shrink-0 bg-brand transition-[width] duration-300 group-hover:w-7" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
+                  <li key={item.title}>
+                    <h4 className="font-sans text-base font-semibold tracking-normal">{item.title}</h4>
+                    <p className="mt-1.5 text-[0.95rem] text-graphite">{item.text}</p>
+                    <p className="mt-2 text-sm text-slate">{item.points.join(' · ')}</p>
                   </li>
                 ))}
               </ul>
               {area.name === 'Legal' && (
-                <div className="mt-6 border-t border-[#d9d9d9] pt-8">
+                <div className="mt-10 border-t border-line pt-8">
                   <p className="font-display text-2xl leading-snug">¿No sabes qué necesitas? Cuéntanos tu caso y te decimos por dónde empezar.</p>
                   <a href="#contacto" className="btn btn-ink mt-6">
                     Pedir orientación
                   </a>
                 </div>
               )}
-              </div>
             </Reveal>
           ))}
         </div>

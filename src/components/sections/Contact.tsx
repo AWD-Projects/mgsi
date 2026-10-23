@@ -66,70 +66,55 @@ export default function Contact() {
           </p>
         </Reveal>
 
-        <div className="mt-16 grid gap-16 lg:grid-cols-12">
+        <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-20">
           <Reveal delay={0.05} className="order-2 lg:order-1 lg:col-span-5">
-            <div className="border-t-2 border-ink pt-6">
-              <h3 className="font-sans text-lg font-semibold tracking-normal">Oficina</h3>
-              <address className="mt-3 text-lg not-italic leading-relaxed">
-                {site.address.lines.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </address>
-              <a
-                href={site.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-line mt-4 inline-flex items-center gap-2 font-semibold text-brand"
-              >
-                <MapPin className="size-4" aria-hidden="true" />
-                Cómo llegar
-              </a>
-            </div>
+            <address className="text-lg not-italic leading-relaxed">
+              {site.address.lines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </address>
+            <a
+              href={site.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-line mt-3 inline-flex items-center gap-2 font-semibold text-brand"
+            >
+              <MapPin className="size-4" aria-hidden="true" />
+              Cómo llegar
+            </a>
 
-            <div className="mt-10 border-t border-line pt-6">
-              <h3 className="font-sans text-lg font-semibold tracking-normal">Teléfonos</h3>
-              <ul className="mt-3 space-y-1 font-display text-3xl">
-                {site.phones.map((phone) => (
-                  <li key={phone.tel}>
-                    <a href={`tel:${phone.tel}`} className="link-line">
-                      {phone.display}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-              {wa && (
-                <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-brand mt-6">
-                  <MessageCircle className="size-[1.1rem]" aria-hidden="true" />
-                  Escribir por WhatsApp
+            <ul className="mt-10 space-y-1 text-lg">
+              {site.phones.map((phone) => (
+                <li key={phone.tel}>
+                  <a href={`tel:${phone.tel}`} className="link-line">
+                    {phone.display}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a href={`mailto:${site.email}`} className="link-line">
+                  {site.email}
                 </a>
-              )}
-            </div>
+              </li>
+            </ul>
 
-            <div className="mt-10 border-t border-line pt-6">
-              <h3 className="font-sans text-lg font-semibold tracking-normal">Correo</h3>
-              <a href={`mailto:${site.email}`} className="link-line mt-3 inline-block text-lg">
-                {site.email}
+            <p className="mt-10 text-lg text-graphite">
+              {site.hours.label}, {site.hours.ranges.map((r) => r.text).join(' y ')}
+            </p>
+
+            {wa && (
+              <a href={wa} target="_blank" rel="noopener noreferrer" className="btn btn-brand mt-8">
+                <MessageCircle className="size-[1.1rem]" aria-hidden="true" />
+                Escribir por WhatsApp
               </a>
-            </div>
-
-            <div className="mt-10 border-t border-line pt-6">
-              <h3 className="font-sans text-lg font-semibold tracking-normal">Horario</h3>
-              <p className="mt-3 text-lg">
-                {site.hours.label}
-                {site.hours.ranges.map((r) => (
-                  <span key={r.text} className="block">
-                    {r.text}
-                  </span>
-                ))}
-              </p>
-            </div>
+            )}
           </Reveal>
 
           <Reveal delay={0.12} className="order-1 lg:sticky lg:top-28 lg:order-2 lg:col-span-7 lg:self-start">
-            <form ref={formRef} action={action} noValidate className="border-t-2 border-ink pt-6" aria-describedby="contact-status">
-              <h3 className="font-sans text-lg font-semibold tracking-normal">Déjanos tu consulta</h3>
+            <form ref={formRef} action={action} noValidate aria-describedby="contact-status">
+              <h3 className="font-sans text-base font-semibold tracking-normal">Déjanos tu consulta</h3>
 
               <div
                 ref={statusRef}

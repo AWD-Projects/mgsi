@@ -92,7 +92,7 @@ export default async function PropertyPage({ params }: Props) {
               {property.type === 'Ambos' ? 'En renta y en venta' : property.type === 'Venta' ? 'En venta' : 'En renta'}
             </p>
 
-            <dl className="mt-8 divide-y divide-line border-y-2 border-ink">
+            <dl className="mt-8 divide-y divide-line border-y border-line">
               {rows.map((row) => (
                 <div key={row.label} className="flex items-baseline justify-between gap-4 py-4">
                   <dt className="text-slate">{row.label}</dt>

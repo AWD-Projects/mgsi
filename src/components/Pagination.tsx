@@ -25,7 +25,7 @@ export default function Pagination({
 
   const edge = 'inline-flex min-h-11 items-center gap-2 px-4 text-[0.95rem] font-semibold transition-colors';
   return (
-    <nav aria-label="Paginación del catálogo" className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t-2 border-ink pt-6">
+    <nav aria-label="Paginación del catálogo" className="mt-16 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
       {page > 1 ? (
         <Link href={hrefFor(page - 1)} rel="prev" className={cn(edge, 'hover:bg-mist')}>
           <ArrowLeft className="size-4" aria-hidden="true" />
