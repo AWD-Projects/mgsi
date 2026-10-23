@@ -1,11 +1,8 @@
-'use client';
-
-import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 /**
  * Motivo de marca: losas inclinadas apiladas, como las torres del logo.
- * Decorativo, sin texto, con baja opacidad. Cada nivel entra una vez, de abajo hacia arriba.
+ * Decorativo, sin texto, con baja opacidad. Cada nivel entra de abajo hacia arriba al hacer scroll (CSS puro).
  */
 const levels = [
   { x: 40, w: 150 },
@@ -23,25 +20,18 @@ export default function Niveles({ className, tone = 'light' }: { className?: str
   const gap = 12;
   const total = levels.length * (height + gap);
   return (
-    <svg
-      aria-hidden="true"
-      focusable="false"
-      viewBox={`0 0 220 ${total}`}
-      className={cn('pointer-events-none select-none', className)}
-    >
+    <svg aria-hidden="true" focusable="false" viewBox={`0 0 220 ${total}`} className={cn('pointer-events-none select-none', className)}>
       {levels.map((level, index) => {
         const y = index * (height + gap);
         const skew = 22;
         const points = `${level.x + skew},${y} ${level.x + level.w},${y} ${level.x + level.w - skew},${y + height} ${level.x},${y + height}`;
         return (
-          <motion.polygon
+          <polygon
             key={index}
             points={points}
             fill={tone === 'brand' ? '#B40039' : '#ffffff'}
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: tone === 'brand' ? 1 : 0.2 + (index % 3) * 0.05, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.7, delay: (levels.length - index) * 0.07, ease: [0.25, 1, 0.5, 1] }}
+            className="nivel"
+            style={{ '--o': tone === 'brand' ? 1 : 0.2 + (index % 3) * 0.05, '--rd': `${(levels.length - index) * 7}%` } as React.CSSProperties}
           />
         );
       })}

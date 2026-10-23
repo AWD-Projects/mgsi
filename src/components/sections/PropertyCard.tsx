@@ -6,7 +6,15 @@ import type { PublicProperty } from '@/lib/properties';
 
 const typeLabel = { Renta: 'En renta', Venta: 'En venta', Ambos: 'Renta y venta' } as const;
 
-export default function PropertyCard({ property, priority = false }: { property: PublicProperty; priority?: boolean }) {
+export default function PropertyCard({
+  property,
+  priority = false,
+  heading: Heading = 'h3',
+}: {
+  property: PublicProperty;
+  priority?: boolean;
+  heading?: 'h2' | 'h3';
+}) {
   const cover = property.images[0];
   return (
     <article className="group h-full">
@@ -29,13 +37,14 @@ export default function PropertyCard({ property, priority = false }: { property:
               </span>
             </div>
           )}
-          <span className="absolute left-0 top-4 bg-white px-3.5 py-1.5 text-sm font-semibold text-ink">
+          <span className="absolute left-0 top-4 bg-white px-3.5 py-1.5 text-sm font-semibold text-ink transition-transform duration-300 group-hover:translate-x-1">
             {typeLabel[property.type]}
           </span>
         </div>
 
-        <div className="mt-4 flex flex-1 flex-col border-t-2 border-ink pt-5">
-          <h3 className="text-[1.65rem] leading-[1.1] sm:min-h-[2.2em]">{property.title}</h3>
+        <div className="relative mt-4 flex flex-1 flex-col border-t-2 border-ink pt-5">
+          <span aria-hidden="true" className="absolute -top-0.5 left-0 h-0.5 w-full origin-left scale-x-0 bg-brand transition-transform duration-500 ease-out group-hover:scale-x-100" />
+          <Heading className="text-[1.65rem] leading-[1.1] sm:min-h-[2.2em]">{property.title}</Heading>
           <dl className="mt-5 divide-y divide-line border-y border-line text-[0.95rem]">
             {property.surface && (
               <div className="flex items-baseline justify-between gap-4 py-2.5">
@@ -58,7 +67,7 @@ export default function PropertyCard({ property, priority = false }: { property:
           </dl>
           <span className="mt-auto inline-flex items-center gap-2 pt-5 text-[0.95rem] font-semibold text-brand">
             Ver ficha completa
-            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
+            <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
           </span>
         </div>
       </Link>

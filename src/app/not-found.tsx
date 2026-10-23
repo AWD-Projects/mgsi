@@ -10,7 +10,7 @@ export default function NotFound() {
         <p className="font-display text-[clamp(5rem,16vw,11rem)] leading-none">404</p>
         <h1 className="mt-4 text-4xl sm:text-5xl">Esta página no existe o la propiedad ya no está publicada.</h1>
         <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-          <Link href="/#propiedades" className="btn btn-brand">
+          <Link href="/propiedades" className="btn btn-brand">
             Ver propiedades disponibles
           </Link>
           <Link href="/" className="btn btn-line">

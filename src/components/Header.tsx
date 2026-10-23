@@ -9,7 +9,7 @@ import { mainPhone, site, whatsappUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
 
 const nav = [
-  { label: 'Propiedades', id: 'propiedades' },
+  { label: 'Propiedades', id: 'propiedades', href: '/propiedades' },
   { label: 'Servicios', id: 'servicios' },
   { label: 'Nosotros', id: 'nosotros' },
   { label: 'Contacto', id: 'contacto' },
@@ -19,12 +19,22 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>('');
+  const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   // Solo la portada abre con un hero oscuro; en el resto de las páginas el encabezado va siempre sólido.
   const overHero = pathname === '/';
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      // Se esconde al bajar rápido y reaparece al subir, para dar más pantalla al contenido.
+      if (Math.abs(y - last) > 8) {
+        setHidden(y > 480 && y > last);
+        last = y;
+      }
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -62,7 +72,8 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow] duration-300',
+        'fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,transform] duration-300',
+        hidden && !open && '-translate-y-full focus-within:translate-y-0',
         solid ? 'bg-white shadow-[0_1px_0_0_var(--color-line)]' : 'bg-transparent',
       )}
     >
@@ -75,8 +86,8 @@ export default function Header() {
           {nav.map((item) => (
             <Link
               key={item.id}
-              href={`/#${item.id}`}
-              aria-current={active === item.id ? 'true' : undefined}
+              href={item.href ?? `/#${item.id}`}
+              aria-current={(item.href ? pathname.startsWith(item.href) : active === item.id) ? 'true' : undefined}
               className={cn(
                 'link-line py-1 text-[0.95rem] font-medium',
                 solid ? 'text-graphite' : 'text-white',
@@ -118,7 +129,7 @@ export default function Header() {
               {nav.map((item) => (
                 <li key={item.id}>
                   <Link
-                    href={`/#${item.id}`}
+                    href={item.href ?? `/#${item.id}`}
                     onClick={() => setOpen(false)}
                     className="block py-5 font-display text-4xl"
                   >

@@ -1,40 +1,14 @@
-'use client';
-
-import { useMemo, useState } from 'react';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import Reveal from '@/components/ui/Reveal';
+import DrawLine from '@/components/ui/DrawLine';
 import PropertyCard from './PropertyCard';
-import { cn } from '@/lib/utils';
 import { mainPhone, whatsappUrl } from '@/lib/site';
 import type { PublicProperty } from '@/lib/properties';
 
-type Filter = 'todas' | 'renta' | 'venta';
-
-export default function Properties({ properties }: { properties: PublicProperty[] }) {
-  const [filter, setFilter] = useState<Filter>('todas');
-
-  const counts = useMemo(
-    () => ({
-      todas: properties.length,
-      renta: properties.filter((p) => p.rentPrice > 0).length,
-      venta: properties.filter((p) => p.salePrice > 0).length,
-    }),
-    [properties],
-  );
-
-  const visible = useMemo(
-    () =>
-      properties.filter((p) =>
-        filter === 'todas' ? true : filter === 'renta' ? p.rentPrice > 0 : p.salePrice > 0,
-      ),
-    [properties, filter],
-  );
-
+/** Portada: solo las propiedades más recientes. El catálogo completo, con filtros y páginas, vive en /propiedades. */
+export default function Properties({ properties, total }: { properties: PublicProperty[]; total: number }) {
   const wa = whatsappUrl('Hola, quisiera conocer las propiedades que tienen disponibles.');
-  const tabs: { id: Filter; label: string }[] = [
-    { id: 'todas', label: 'Todas' },
-    { id: 'renta', label: 'En renta' },
-    { id: 'venta', label: 'En venta' },
-  ];
 
   return (
     <section id="propiedades" className="section-y bg-white">
@@ -46,28 +20,11 @@ export default function Properties({ properties }: { properties: PublicProperty[
               Cada propiedad tiene su ficha con fotos, superficie y precios. Si una te interesa, pregunta por ella en un toque.
             </p>
           </div>
-
-          {properties.length > 0 && (
-            <div role="tablist" aria-label="Filtrar propiedades" className="flex w-full shrink-0 border border-ink lg:w-auto">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  role="tab"
-                  type="button"
-                  aria-selected={filter === tab.id}
-                  onClick={() => setFilter(tab.id)}
-                  className={cn(
-                    'min-h-11 flex-1 whitespace-nowrap px-3 text-[0.95rem] font-semibold transition-colors sm:px-5 lg:flex-none',
-                    filter === tab.id ? 'bg-ink text-white' : 'bg-white text-ink hover:bg-mist',
-                  )}
-                >
-                  {tab.label}
-                  <span className={cn('ml-2 font-normal', filter === tab.id ? 'text-white/80' : 'text-slate')}>
-                    {counts[tab.id]}
-                  </span>
-                </button>
-              ))}
-            </div>
+          {total > 0 && (
+            <Link href="/propiedades" className="btn btn-ink shrink-0">
+              Ver las {total} propiedades
+              <ArrowRight className="arrow size-4" aria-hidden="true" />
+            </Link>
           )}
         </Reveal>
 
@@ -92,16 +49,28 @@ export default function Properties({ properties }: { properties: PublicProperty[
               </a>
             </div>
           </Reveal>
-        ) : visible.length === 0 ? (
-          <p className="mt-14 border-t-2 border-ink pt-10 text-lg text-slate">No hay propiedades en esta categoría por ahora.</p>
         ) : (
-          <ul className="mt-14 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
-            {visible.map((property, index) => (
-              <Reveal as="li" key={property.id} delay={(index % 3) * 0.06}>
-                <PropertyCard property={property} priority={index < 3} />
+          <>
+            <DrawLine className="mt-14" />
+            <ul className="mt-10 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+              {properties.map((property, index) => (
+                <Reveal as="li" key={property.id} delay={index * 0.1}>
+                  <PropertyCard property={property} />
+                </Reveal>
+              ))}
+            </ul>
+            {total > properties.length && (
+              <Reveal className="mt-14 flex flex-col items-start justify-between gap-5 border-t border-line pt-8 sm:flex-row sm:items-center">
+                <p className="text-lg text-graphite">
+                  Mostramos {properties.length} de {total} propiedades publicadas.
+                </p>
+                <Link href="/propiedades" className="btn btn-brand">
+                  Ver todo el catálogo
+                  <ArrowRight className="arrow size-4" aria-hidden="true" />
+                </Link>
               </Reveal>
-            ))}
-          </ul>
+            )}
+          </>
         )}
       </div>
     </section>

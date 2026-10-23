@@ -4,7 +4,7 @@ import Logo from '@/components/ui/Logo';
 import { site } from '@/lib/site';
 
 const links = [
-  { label: 'Propiedades', href: '/#propiedades' },
+  { label: 'Propiedades', href: '/propiedades' },
   { label: 'Servicios', href: '/#servicios' },
   { label: 'Nosotros', href: '/#nosotros' },
   { label: 'Contacto', href: '/#contacto' },

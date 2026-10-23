@@ -13,15 +13,16 @@ export const revalidate = 300;
 export default async function Home() {
   const properties = await getProperties();
   const featured = properties.find((p) => p.images.length > 0);
+  const latest = properties.slice(0, 3);
 
   return (
     <>
       <Hero featured={featured} />
-      <Properties properties={properties} />
+      <Properties properties={latest} total={properties.length} />
       <Services />
       <About />
       <Contact />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(homePageGraph(properties)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(homePageGraph(latest)) }} />
     </>
   );
 }

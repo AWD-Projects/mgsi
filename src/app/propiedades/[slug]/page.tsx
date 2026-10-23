@@ -72,7 +72,7 @@ export default async function PropertyPage({ params }: Props) {
       <div className="border-b border-line bg-white pt-16 md:pt-20">
         <div className="container-page py-5">
           <nav aria-label="Ruta de navegación">
-            <Link href="/#propiedades" className="link-line inline-flex items-center gap-2 text-[0.95rem] font-medium text-graphite">
+            <Link href="/propiedades" className="link-line inline-flex items-center gap-2 text-[0.95rem] font-medium text-graphite">
               <ArrowLeft className="size-4" aria-hidden="true" />
               Todas las propiedades
             </Link>

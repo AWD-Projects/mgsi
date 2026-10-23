@@ -93,6 +93,42 @@ export function homePageGraph(properties: PublicProperty[]) {
   };
 }
 
+/** Catálogo (o una de sus páginas): lista de las propiedades que se ven en esa página. */
+export function catalogGraph(properties: PublicProperty[], path: string, offset = 0) {
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${siteUrl}${path}#webpage`,
+        url: `${siteUrl}${path}`,
+        name: `Propiedades disponibles | ${site.name}`,
+        isPartOf: { '@id': SITE_ID },
+        about: { '@id': ORG_ID },
+        inLanguage: site.locale,
+        ...(properties.length > 0 && {
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: properties.map((p, i) => ({
+              '@type': 'ListItem',
+              position: offset + i + 1,
+              url: `${siteUrl}/propiedades/${p.slug}`,
+              name: p.title,
+            })),
+          },
+        }),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
+          { '@type': 'ListItem', position: 2, name: 'Propiedades', item: `${siteUrl}/propiedades` },
+        ],
+      },
+    ],
+  };
+}
+
 export function propertyGraph(p: PublicProperty) {
   const url = `${siteUrl}/propiedades/${p.slug}`;
   const offers = [
@@ -129,7 +165,7 @@ export function propertyGraph(p: PublicProperty) {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Inicio', item: siteUrl },
-          { '@type': 'ListItem', position: 2, name: 'Propiedades', item: `${siteUrl}/#propiedades` },
+          { '@type': 'ListItem', position: 2, name: 'Propiedades', item: `${siteUrl}/propiedades` },
           { '@type': 'ListItem', position: 3, name: p.title, item: url },
         ],
       },

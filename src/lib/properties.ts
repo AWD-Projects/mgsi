@@ -1,4 +1,5 @@
 import 'server-only';
+import { unstable_cache } from 'next/cache';
 import { ObjectId } from 'mongodb';
 import { getDatabase } from './mongodb';
 import { prettyTitle, prettySurface, slugify } from './format';
@@ -88,8 +89,7 @@ function handleFailure(error: unknown, what: string): never | [] {
   throw error;
 }
 
-/** Propiedades activas, más recientes primero. */
-export async function getProperties(): Promise<PublicProperty[]> {
+async function readProperties(): Promise<PublicProperty[]> {
   if (!process.env.MONGODB_URI) return [];
   try {
     const db = await getDatabase();
@@ -121,6 +121,9 @@ export async function getProperties(): Promise<PublicProperty[]> {
     return handleFailure(error, 'las propiedades');
   }
 }
+
+/** Propiedades activas, más recientes primero. Caché de 5 min: el catálogo paginado no consulta la base en cada visita. */
+export const getProperties = unstable_cache(readProperties, ['mgsi-properties'], { revalidate: 300, tags: ['properties'] });
 
 export async function getPropertyBySlug(slug: string): Promise<PublicProperty | null> {
   const id = slug.match(/([a-f0-9]{24})$/i)?.[1];
