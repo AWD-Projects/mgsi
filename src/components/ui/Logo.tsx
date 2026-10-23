@@ -1,41 +1,29 @@
-'use client';
-
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 interface LogoProps {
-  variant?: 'light' | 'dark' | 'color';
-  size?: 'sm' | 'md' | 'lg';
+  /** "light" = versión blanca para fondos oscuros; "color" = versión de marca para fondos claros */
+  variant?: 'light' | 'color';
   className?: string;
+  priority?: boolean;
 }
 
-const sizeClasses = {
-  sm: 'h-8 w-auto',
-  md: 'h-12 w-auto', 
-  lg: 'h-16 w-auto',
-};
+const sources = {
+  light: { src: '/images/logo-white.svg', width: 721, height: 408 },
+  color: { src: '/images/logo-color.svg', width: 878, height: 494 },
+} as const;
 
-export default function Logo({ 
-  variant = 'color', 
-  size = 'md', 
-  className 
-}: LogoProps) {
-  const logoSrc = {
-    light: '/images/logo-white.svg',
-    dark: '/images/logo-color.svg',
-    color: '/images/logo-color.svg',
-  };
-
+export default function Logo({ variant = 'color', className, priority }: LogoProps) {
+  const logo = sources[variant];
   return (
-    <div className={cn('flex items-center', className)}>
-      <Image
-        src={logoSrc[variant]}
-        alt="MG Servicio Inmobiliario"
-        width={120}
-        height={40}
-        className={cn(sizeClasses[size], 'object-contain')}
-        priority
-      />
-    </div>
+    <Image
+      src={logo.src}
+      width={logo.width}
+      height={logo.height}
+      alt="MG Servicio Inmobiliario"
+      priority={priority}
+      unoptimized
+      className={cn('h-11 w-auto', className)}
+    />
   );
 }

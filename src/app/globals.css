@@ -1,0 +1,209 @@
+@import 'tailwindcss';
+
+/*
+  MG Servicio Inmobiliario — tokens.
+  Colores de marca intactos: #B40039, negro, #3C0013 y blanco, más los grises que el sitio ya usaba.
+*/
+@theme {
+  --font-sans: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-newsreader), ui-serif, Georgia, serif;
+
+  --color-brand: #b40039;
+  --color-wine: #3c0013;
+  --color-ink: #000000;
+  --color-graphite: #262626;
+  --color-slate: #666666;
+  --color-line: #ebebeb;
+  --color-mist: #f5f5f5;
+  --color-paper: #ffffff;
+
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-graphite);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-wrap: pretty;
+    overflow-x: clip;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+  .on-dark :focus-visible {
+    outline-color: #fff;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 3rem;
+    }
+  }
+
+  .section-y {
+    padding-block: 5rem;
+  }
+  @media (min-width: 768px) {
+    .section-y {
+      padding-block: 7rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-y {
+      padding-block: 9rem;
+    }
+  }
+
+  .h-section {
+    font-size: clamp(2.25rem, 4.4vw, 3.75rem);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.005em;
+    line-height: 1.2;
+    transition:
+      background-color 0.25s var(--ease-out-quart),
+      color 0.25s var(--ease-out-quart),
+      border-color 0.25s var(--ease-out-quart);
+    cursor: pointer;
+  }
+  .btn-brand {
+    background: var(--color-brand);
+    color: #fff;
+  }
+  .btn-brand:hover {
+    background: color-mix(in srgb, var(--color-brand) 88%, black);
+  }
+  .btn-ink {
+    background: var(--color-ink);
+    color: #fff;
+  }
+  .btn-ink:hover {
+    background: var(--color-graphite);
+  }
+  .btn-line {
+    border: 1px solid currentColor;
+  }
+  .btn-line:hover {
+    background: #fff;
+    color: var(--color-ink);
+    border-color: #fff;
+  }
+  .btn-line-dark:hover {
+    background: var(--color-ink);
+    color: #fff;
+    border-color: var(--color-ink);
+  }
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .link-line {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: background-size 0.35s var(--ease-out-quart);
+  }
+  .link-line:hover,
+  .link-line[aria-current='true'] {
+    background-size: 100% 1px;
+  }
+
+  .field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #c9c9c9;
+    padding: 0.8rem 0;
+    font: inherit;
+    color: var(--color-ink);
+    border-radius: 0;
+    transition: border-color 0.2s;
+  }
+  .field::placeholder {
+    color: var(--color-slate);
+  }
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--color-brand);
+    box-shadow: 0 1px 0 0 var(--color-brand);
+  }
+  .field[aria-invalid='true'] {
+    border-bottom-color: var(--color-brand);
+  }
+}
+
+/* Carril de fotos de la ficha: scroll-snap sin librerías */
+.snap-rail {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.snap-rail::-webkit-scrollbar {
+  display: none;
+}
+.snap-rail > * {
+  scroll-snap-align: start;
+}

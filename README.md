@@ -1,94 +1,30 @@
-# MGSI Website
+# MG Servicio Inmobiliario — sitio público
 
-Sitio web oficial de MG Servicio Inmobiliario construido con Next.js 14, TypeScript y Tailwind CSS.
+Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · TypeScript · MongoDB (solo lectura) · SendGrid · Netlify.
 
-## 🚀 Características
+Las propiedades se administran en el proyecto `mg-portal`; este sitio solo las muestra.
 
-- **Next.js 14** con App Router
-- **TypeScript** para type safety
-- **Tailwind CSS** para estilos
-- **Framer Motion** para animaciones
-- **Redux Toolkit** para manejo de estado
-- **MongoDB** para base de datos
-- **SendGrid** para emails
-- **Responsive Design** para todos los dispositivos
-
-## 📦 Instalación
-
+## Desarrollo
 ```bash
-# Instalar dependencias
+cp .env.example .env.local   # completar valores
 npm install
-
-# Configurar variables de entorno
-cp .env.example .env.local
-# Editar .env.local con tus credenciales
-
-# Ejecutar en desarrollo
 npm run dev
-
-# Construir para producción
-npm run build
-npm start
+npm run lint && npm run typecheck && npm run build
 ```
+Requiere Node 22.
 
-## 🔧 Variables de Entorno
+## Variables de entorno (Netlify)
+| Variable | Uso |
+|---|---|
+| `MONGODB_URI` (`MONGODB_DB` opcional) | Lectura de propiedades |
+| `SENDGRID_API_KEY`, `SENDGRID_FROM`, `SENDGRID_TO` | Formulario de contacto |
+| `NEXT_PUBLIC_SITE_URL` | URL canónica, sitemap, JSON-LD |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | Opcional; por defecto `525555342493` (55 5534 2493) |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | Verificación de Search Console |
+| `NEXT_PUBLIC_NOINDEX` | `true` en previews para no indexar |
 
-```env
-MONGODB_URI=tu_string_de_conexion_mongodb
-SENDGRID_API_KEY=tu_api_key_sendgrid
-SENDGRID_FROM=tu_email_verificado
-SENDGRID_TO=email_destinatario
-NEXTAUTH_URL=https://tu-dominio.com
-NEXTAUTH_SECRET=tu_clave_secreta
-```
+## Ramas
+`dev` → preview de Netlify. `main` → producción (solo con aprobación).
 
-## 📁 Estructura del Proyecto
-
-```
-src/
-├── app/                    # Next.js 14 App Router
-│   ├── api/               # API Routes
-│   ├── layout.tsx         # Layout principal
-│   ├── page.tsx           # Página de inicio
-│   └── providers.tsx      # Providers de Redux
-├── components/
-│   ├── sections/          # Secciones de la página
-│   └── ui/               # Componentes reutilizables
-├── lib/                   # Utilidades
-├── store/                 # Redux store
-├── styles/               # Estilos globales
-└── types/                # Definiciones TypeScript
-```
-
-## 🌐 Despliegue en Netlify
-
-1. Conecta tu repositorio a Netlify
-2. Configura las variables de entorno en Netlify
-3. El archivo `netlify.toml` se encarga de la configuración automática
-
-## 📧 Funcionalidades
-
-- **Portafolio de propiedades** con datos dinámicos desde MongoDB
-- **Formulario de contacto** con validación y envío por email
-- **Animaciones fluidas** con Framer Motion
-- **Diseño responsive** para móviles y desktop
-- **SEO optimizado** con metadatos
-
-## 🛠️ Tecnologías
-
-- Next.js 14
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Redux Toolkit
-- MongoDB
-- SendGrid
-- Lucide React
-- React Hook Form
-- Zod
-- Swiper.js
-
-## 📄 Licencia
-
-Este proyecto es privado y pertenece a MG Servicio Inmobiliario.
-# mgsi
+## Documentos
+`PRODUCT.md` (contexto) y `DESIGN.md` (reglas visuales).

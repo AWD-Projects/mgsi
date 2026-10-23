@@ -1,12 +1,19 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
+import { getProperties } from '@/lib/properties';
+import { siteUrl } from '@/lib/site';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const properties = await getProperties();
   return [
-    {
-      url: 'https://mgsi.netlify.app',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
+    { url: siteUrl, changeFrequency: 'weekly', priority: 1 },
+    ...properties.map((p) => ({
+      url: `${siteUrl}/propiedades/${p.slug}`,
+      lastModified: p.updatedAt ? new Date(p.updatedAt) : undefined,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    })),
+    { url: `${siteUrl}/aviso-de-privacidad`, changeFrequency: 'yearly', priority: 0.2 },
   ];
 }

@@ -1,70 +1,85 @@
-import { Inter } from 'next/font/google';
-import { ReactNode } from 'react';
-import '@/styles/globals.css';
-import { Providers } from './providers';
-import dynamic from 'next/dynamic';
+import type { Metadata, Viewport } from 'next';
+import localFont from 'next/font/local';
+import './globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import StickyContact from '@/components/StickyContact';
+import Providers from '@/components/Providers';
+import { site, siteUrl } from '@/lib/site';
+import { jsonLd, baseGraph } from '@/lib/seo';
 
-// Importación dinámica del layout condicional
-const ConditionalLayout = dynamic(() => import('@/components/ConditionalLayout'), {
-  ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="h-16 w-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin" />
-    </div>
-  ),
-});
-
-const inter = Inter({
-  subsets: ['latin'],
+const display = localFont({
+  src: './fonts/Newsreader-Variable.woff2',
+  variable: '--font-newsreader',
+  weight: '200 800',
   display: 'swap',
-  variable: '--font-inter',
 });
 
-export const metadata = {
-  metadataBase: new URL('https://mgsi.netlify.app'),
-  title: 'MG Servicio Inmobiliario | Expertos en Propiedades en México',
-  description: 'Empresa especializada en propiedades inmobiliarias con más de 40 años de experiencia en el mercado mexicano. Asesoramiento para compra, venta y renta de propiedades.',
-  keywords: 'inmobiliaria, propiedades, bienes raíces, casas en venta, departamentos en renta, servicios inmobiliarios, asesores inmobiliarios',
-  authors: [{ name: 'MG Servicio Inmobiliario' }],
-  category: 'Real Estate',
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: '/images/logo-icon.svg',
-    apple: '/images/logo-icon.svg',
-    shortcut: '/images/logo-icon.svg',
-  },
-  manifest: '/site.webmanifest',
+const grotesk = localFont({
+  src: './fonts/SchibstedGrotesk-Variable.woff2',
+  variable: '--font-grotesk',
+  weight: '400 900',
+  display: 'swap',
+});
+
+const title = 'MG Servicio Inmobiliario | Compra, venta y renta en México';
+const description =
+  'Más de 40 años en asesoría inmobiliaria, administrativa y legal. Compra, venta, renta y administración de propiedades en la Ciudad de México.';
+const noindex = process.env.NEXT_PUBLIC_NOINDEX === 'true';
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: { default: title, template: `%s | ${site.name}` },
+  description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: siteUrl }],
+  creator: 'AMOXTLI®',
+  alternates: { canonical: '/', languages: { 'es-MX': '/' } },
+  robots: noindex
+    ? { index: false, follow: false }
+    : {
+        index: true,
+        follow: true,
+        googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
+      },
   openGraph: {
-    title: 'MG Servicio Inmobiliario | Expertos en Propiedades en México',
-    description: 'Empresa especializada en propiedades inmobiliarias con más de 40 años de experiencia en el mercado mexicano.',
-    url: '/',
-    siteName: 'MG Servicio Inmobiliario',
-    locale: 'es_MX',
     type: 'website',
+    url: '/',
+    siteName: site.name,
+    locale: 'es_MX',
+    title,
+    description,
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'MG Servicio Inmobiliario | Expertos en Propiedades',
-    description: 'Empresa especializada en propiedades inmobiliarias con más de 40 años de experiencia en el mercado mexicano.',
-  },
+  twitter: { card: 'summary_large_image', title, description },
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION }
+    : undefined,
+  formatDetection: { telephone: true, email: true, address: true },
 };
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
+export const viewport: Viewport = {
+  themeColor: '#B40039',
+  width: 'device-width',
+  initialScale: 1,
+};
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${inter.variable} scroll-smooth`}>
-      <body className="min-h-screen bg-background font-sans antialiased overflow-x-hidden">
+    <html lang="es-MX" className={`${display.variable} ${grotesk.variable}`}>
+      <body>
+        <a
+          href="#contenido"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-white focus:px-4 focus:py-2 focus:text-ink"
+        >
+          Saltar al contenido
+        </a>
         <Providers>
-          <ConditionalLayout>
-            {children}
-          </ConditionalLayout>
+          <Header />
+          <main id="contenido">{children}</main>
+          <Footer />
+          <StickyContact />
         </Providers>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(baseGraph()) }} />
       </body>
     </html>
   );
