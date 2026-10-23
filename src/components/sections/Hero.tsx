@@ -10,8 +10,8 @@ export default function Hero() {
       {/* Fondo de marca: degradado negro, vino y #B40039 */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-br from-black via-wine to-brand opacity-90" />
 
-      <div className="container-page flex flex-1 items-center pb-10 pt-28">
-        <div className="rise hero-content max-w-3xl">
+      <div className="hero-content container-page flex flex-1 items-center pb-10 pt-28">
+        <div className="rise max-w-3xl">
           <h1 className="text-[clamp(2.4rem,5.2vw,4.5rem)] font-medium leading-[1.05]">
             Inmobiliaria con 40 años de respaldo legal y administrativo.
           </h1>
