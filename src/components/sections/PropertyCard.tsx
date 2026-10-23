@@ -19,7 +19,7 @@ export default function PropertyCard({
   return (
     <article className="group h-full">
       <Link href={`/propiedades/${property.slug}`} className="flex h-full flex-col">
-        <div className="relative aspect-[4/3] overflow-hidden bg-mist">
+        <div className="scroll-photo relative aspect-[4/3] overflow-hidden bg-mist">
           {cover ? (
             <Image
               src={cover}
